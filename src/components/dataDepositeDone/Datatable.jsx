@@ -26,7 +26,7 @@ const DatatableDepositeDone = () => {
     //   }
     // };
     // fetchData();
-
+    
     const unsub = onSnapshot(
       collection(db, "deposite/"),
       (snapShot) => {
