@@ -106,7 +106,7 @@ const Widget = ({ type }) => {
         ((lastMonthData.docs.length - prevMonthData.docs.length) / prevMonthData.docs.length) *
           100
       );
-    };
+    }
     fetchData();
   }, []);
 

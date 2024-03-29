@@ -10,27 +10,13 @@ import {
   doc,
   onSnapshot,
 } from "firebase/firestore";
-import { db } from "../../firebase";
+import { db, database } from "../../firebase";
+import { remove } from "firebase/database";
 
 const Datatable = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   let list = [];
-    //   try {
-    //     const querySnapshot = await getDocs(collection(db, "users"));
-    //     querySnapshot.forEach((doc) => {
-    //       list.push({ id: doc.id, ...doc.data() });
-    //     });
-    //     setData(list);
-    //     console.log(list);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // };
-    // fetchData();
-
     // LISTEN (REALTIME)
     const unsub = onSnapshot(
       collection(db, "users"),
@@ -55,6 +41,7 @@ const Datatable = () => {
     try {
       await deleteDoc(doc(db, "users", id));
       setData(data.filter((item) => item.id !== id));
+      await remove(database, "users", id);
     } catch (err) {
       console.log(err);
     }

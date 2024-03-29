@@ -10,6 +10,7 @@ import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
 import ListDeposite from "./pages/listDeposite/List";
+import ListDepositeDone from "./pages/listDepositeDone/List";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -70,18 +71,28 @@ function App() {
                 }
               />
               <Route
-                path=":productId"
+                path=":deposite"
                 element={
                   <RequireAuth>
                     <Single />
                   </RequireAuth>
                 }
               />
+            </Route>
+            <Route path="deposites-done">
               <Route
-                path="new"
+                index
                 element={
                   <RequireAuth>
-                    <New inputs={productInputs} title="Add New Product" />
+                    <ListDepositeDone />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path=":deposite"
+                element={
+                  <RequireAuth>
+                    <Single />
                   </RequireAuth>
                 }
               />

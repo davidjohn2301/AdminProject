@@ -46,13 +46,15 @@ const Sidebar = () => {
           <Link to="/deposites" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
-              <span>Deposites</span>
+              <span>Deposites Pending</span>
             </li>
           </Link>
+          <Link to="/deposites-done" style={{ textDecoration: "none" }}>
           <li>
             <CreditCardIcon className="icon" />
-            <span>Orders</span>
+            <span>Deposites Done</span>
           </li>
+          </Link>
           <li>
             <LocalShippingIcon className="icon" />
             <span>Delivery</span>
