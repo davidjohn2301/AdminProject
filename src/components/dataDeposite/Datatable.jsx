@@ -2,7 +2,7 @@ import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../dataDeposite/datatablesource";
 import { useEffect, useState } from "react";
-import { collection, doc, onSnapshot, updateDoc, getDocs } from "firebase/firestore";
+import { collection, doc, onSnapshot, updateDoc, getDoc, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebase";
 import { AcceptDeposite, Rewards } from "../../store/auth";
 import { toast } from "react-hot-toast";
@@ -10,7 +10,8 @@ import { toast } from "react-hot-toast";
 const DatatableDeposite = () => {
   const [data, setData] = useState([]);
   const [amount, setAmount] = useState();
-    const [idRef, setIdRef] = useState()
+  const [idRef, setIdRef] = useState()
+
   useEffect(() => {
     const unsub = onSnapshot(
       collection(db, "deposite/"),
@@ -39,6 +40,7 @@ const DatatableDeposite = () => {
       await updateDoc(depositeRef, {
         status: "Success",
       });
+     
       const unsub = onSnapshot(
         depositeRef,
         async (snapShot) => {
